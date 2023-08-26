@@ -16,15 +16,15 @@ The player has placed flags on all possible cells where they can be placed. Now,
 
 In the first example, the given game board is as follows. For convenience, let's denote the cell in the $r$-th row and the $c$-th column of the game board as $M_{r,c}$.
 
-!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c5a64e70-6653-4010-98a0-86abd45677cc/Untitled.png
+![image](https://github.com/eunjian/goormchallenge/assets/46674129/5d74a887-d26f-4ed0-a505-f690775b9a81)
 
 $M_{3,2}$ is an empty cell that is also adjacent to clouds in the eight directions. Since there are four clouds in total, the value of the flag at this position will be **4**.
 
-!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c71ef9a9-b55c-40df-9f3c-fd7ba5a73f2f/Untitled.png
+![image](https://github.com/eunjian/goormchallenge/assets/46674129/ab9a32db-73e8-42ad-b602-a142bcd1bda2)
 
 The result of placing flags on all possible positions of the game board would be as shown below. Empty cells are where no flag is placed.
 
-!https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8de23831-25eb-4b7d-ba9b-89291e732488/Untitled.png
+![image](https://github.com/eunjian/goormchallenge/assets/46674129/fbe8898f-56f3-433b-8340-b217a68aca94)
 
 ### Input
 

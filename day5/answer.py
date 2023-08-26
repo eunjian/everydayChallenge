@@ -1,15 +1,15 @@
-n, k = map(int, input().split()) #정수의 수n, 찾으려는 위치k
-int_list = [*map(int,input().split())] #정수 리스트
+n, k = map(int, input().split())  # Input the number of integers (n) and the desired position (k)
+int_list = [*map(int, input().split())]  # Input the list of integers
 
-b_list = [] #변환한 2진수 리스트
+b_list = []  # List to store converted binary values
 
-#10진수 정수를 2진수로 변환
+# Convert decimal integers to binary
 for i in int_list:
-	b = format(i,'b') #2진수로 변환
-	b_list.append(b) #2진수 리스트에 추가
-	
-#2진수들을 1의 개수 기준으로 내림차순 정렬, 1의 개수 같으면 10진수 기준으로 내림차순 정렬
-r = sorted(b_list, key=lambda x: (x.count('1'),int(x,2)), reverse=True)
+    b = format(i, 'b')  # Convert to binary
+    b_list.append(b)  # Add binary value to the list
 
-#k번째 위치한 수 10진수로 변환 후 출력 (인덱스는 k-1)
-print(int(r[k-1],2))
+# Sort binary values based on the count of ones in descending order, and if the counts are the same, sort by decimal value in descending order
+r = sorted(b_list, key=lambda x: (x.count('1'), int(x, 2)), reverse=True)
+
+# Convert and print the position k's number from binary to decimal (index is k-1)
+print(int(r[k-1], 2))

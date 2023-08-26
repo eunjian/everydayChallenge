@@ -1,4 +1,4 @@
-##sort()사용
+## Use sort()
 N = int(input())
 arr = list(map(int, input().split()))
 
@@ -25,7 +25,7 @@ if check:
 else:
 	print(0)
     
-##sorted()사용
+## Use sorted()
 N = int(input())
 arr = list(map(int, input().split()))
 

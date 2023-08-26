@@ -1,15 +1,15 @@
-# 플레이어의 통증 수치 입력
+# Input the player's pain level
 n = int(input())
-# 사용한 아이템의 개수
+# Initialize the count of used items
 count = 0
 
-# 통증 수치 감소 아이템 3종류 (큰 순서대로 배열)
+# List of pain-reducing items in descending order
 items = [14, 7, 1]
 
-# 통증 수치 감소 아이템 개수 최소로 사용
+# Find the minimum number of items needed to reduce the pain level
 for item in items:
-	count += n//item #사용된 해당 아이템 개수 세기
-	n %= item 
+    count += n // item  # Count how many of the current item are used
+    n %= item  # Update the remaining pain level after using the item
 
-# 필요한 아이템 최소 개수 출력
+# Print the minimum number of items required
 print(count)

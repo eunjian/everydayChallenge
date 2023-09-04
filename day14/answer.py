@@ -1,36 +1,38 @@
 from collections import deque
 
-# 노드의 개수, 간선의 개수, 시작 노드의 번호 입력
-n,m,k = map(int, input().split())
-# 간선이 잇는 양끝 정점의 번호들 입력 후 그래프 구현
+# Input: Number of nodes, number of edges, starting node
+n, m, k = map(int, input().split())
+
+# Initialize the graph with edges between nodes
 graph = [[] for _ in range(n+1)]
-
 for i in range(m):
-	# 양방향 간선이니까 두개의 노드 모두 간선 추가
-	s, e = map(int,input().split())
-	graph[s].append(e)
-	graph[e].append(s)
-	
-# 방문 가능한 노드들 작은 순으로 정렬
+    s, e = map(int, input().split())
+    graph[s].append(e)
+    graph[e].append(s)
+
+# Sort neighbors of each node in ascending order
 for i in range(1, n+1):
-	graph[i].sort()
+    graph[i].sort()
 
-# 방문체크할 리스트 생성
-v = [False] * (n+1)
-# 시작 노드 방문처리
-v[k] = True 
-# 이동 경로 기록 리스트
-l = [k]
-# 현재 노드에서 이동가능한 노드들 추가할 수 있는 큐
+# Initialize visited node list and mark the starting node as visited
+visited = [False] * (n+1)
+visited[k] = True
+
+# Initialize the path list with the starting node
+path = [k]
+
+# Initialize a queue with the starting node
 q = deque([k])
-# bfs 이용하여 탐색
-while q: # 이동 가능한 노드가 없을 때까지 반복
-	node = q.popleft() # 가장 작은 수의 노드부터
-	for i in graph[node]: 
-		if not v[i]:
-			v[i] = True
-			q.append(i)
-			l.append(i)
-			break # 현재의 노드에서 이동했으면 더는 반복문 진행하지 않음
 
-print(len(l), l[-1])
+# BFS traversal
+while q:  # Continue until there are no more reachable nodes
+    node = q.popleft()  # Get the smallest node available
+    for next_node in graph[node]:  # Iterate through its neighbors
+        if not visited[next_node]:  # If the neighbor is not visited yet
+            visited[next_node] = True  # Mark it as visited
+            q.append(next_node)  # Add it to the queue for further exploration
+            path.append(next_node)  # Record the path
+            break  # Move to the smallest neighbor and exit the loop
+
+# Output the number of visited nodes and the last visited node
+print(len(path), path[-1])

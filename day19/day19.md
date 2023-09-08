@@ -8,11 +8,12 @@ The player lives in a country with $N$ cities numbered from 1 to $N$ and $M$ roa
 
 The player wants to travel from city $S$ to city $E$ by car. When the player moves between two cities, they always take the path with the fewest cities. For example, in the diagram below, if the player wants to travel from city 1 to city 4, they will always take the path 1→3→4, which passes through a total of three cities. They will not choose the path 1→5→2→4, which passes through a total of four cities.
 
-!https://prod-files-secure.s3.us-west-2.amazonaws.com/9edb0127-e23d-4cb7-a49a-34f62cc099dc/92965dbe-9519-4b69-b3d6-977a21613561/Untitled.png
+![image](https://github.com/eunjian/goormchallenge/assets/46674129/02aa543f-8a8b-412c-b0b3-19ae021abfac)
+
 
 The path with the fewest cities may not be unique. In the example below, when the player wants to travel from city 3 to city 1, they have two options: 3→2→1 and 3→4→1. In such cases, the player can choose either path.
 
-!https://prod-files-secure.s3.us-west-2.amazonaws.com/9edb0127-e23d-4cb7-a49a-34f62cc099dc/e69a5638-cadf-41be-8686-75fba8fe6dbb/Untitled.png
+![image](https://github.com/eunjian/goormchallenge/assets/46674129/d3464e1b-4c3d-4837-863c-b4fecbf3f972)
 
 In the player's country, construction work is frequently carried out. On the $i$-th day, construction work will be carried out in city $i$. While construction work is ongoing in a city, all roads connected to that city are temporarily closed and cannot be used.
 

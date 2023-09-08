@@ -14,7 +14,7 @@ The following figure shows an example of drawing three half-lines on a square wi
 
 - (3,2), right/ (3,3), left/ (3,2), up
 
-!https://prod-files-secure.s3.us-west-2.amazonaws.com/9edb0127-e23d-4cb7-a49a-34f62cc099dc/52214fea-c568-432c-8a8b-05739e7e1e24/Untitled.png
+![image](https://github.com/eunjian/goormchallenge/assets/46674129/a5a16c19-4bd4-4627-997d-8ffba1f6ab13)
 
 There are two horizontal half-lines passing through squares (3,2) and (3,3), but since these two half-lines are parallel to each other, there is no overlap point. However, the vertical half-line passing through the square (3,2) intersects with the other two half-lines, so there are ultimately two overlapping points.
 
@@ -26,7 +26,7 @@ Let's find the number of overlapping points that occur after the player draws al
 
 The first example can be represented graphically as follows, with six overlapping points:
 
-!https://prod-files-secure.s3.us-west-2.amazonaws.com/9edb0127-e23d-4cb7-a49a-34f62cc099dc/2c77fdb1-eb0e-4d92-b543-07d67c09fc25/Untitled.png
+![image](https://github.com/eunjian/goormchallenge/assets/46674129/024cd51d-5c3b-4f07-920d-03d70d4c67d3)
 
 ### Input
 

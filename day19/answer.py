@@ -1,77 +1,76 @@
 import heapq
 
-# '무한'을 의미하는 값으로 10억을 활용
+# Use a large value to represent 'infinity'
 INF = int(1e9)
 
-# 노드와 간선의 개수, 시작 노드 번호, 도착 노드 번호 입력받기
+# Input the number of nodes, edges, start node, and end node
 n, e, start, end = map(int, input().split())
 
-# 노드별로 연결된 노드 정보를 저장할 리스트 선언
+# Initialize a list to store connected nodes for each node
 graph = [[] for _ in range(n + 1)]
 
-# 최단 거리 테이블: 초기에는 모든 값을 무한으로 초기화
+# Initialize the distance table with all values set to 'infinity'
 distance = [INF] * (n + 1)
 
-# 최단 경로를 기록하기 위한 배열
+# Initialize an array to record the shortest path
 path = [-1] * (n + 1)
 
-# 공사 중인 도시를 저장할 리스트
+# List to keep track of construction in each city
 construction = [False] * (n + 1)
 
-# 간선 정보 입력받기 (비용을 무시)
+# Input edge information (ignoring the cost)
 for _ in range(e):
-	n_a, n_b = map(int, input().split())
-	graph[n_a].append(n_b)
-	graph[n_b].append(n_a)  # 양방향 간선 처리
+    n_a, n_b = map(int, input().split())
+    graph[n_a].append(n_b)
+    graph[n_b].append(n_a)  # Handle bidirectional edges
 
-# 최단 경로 계산 함수
+# Dijkstra's algorithm to calculate the shortest path
 def dijkstra(start):
-	# 우선순위 큐 자료구조 생성
-	pq = []
-	# 시작 노드의 자기 자신까지의 거리는 0으로 설정, 우선순위 큐에 삽입
-	heapq.heappush(pq, (0, start))
-	distance[start] = 0
-	# 우선순위 큐가 비어있을 때까지 무한 반복
-	while pq:
-		# 최단 거리가 가장 짧은 노드 추출(거리, 노드 정보 순)
-		dist, n_now = heapq.heappop(pq)
-		# 이미 처리된 노드는 무시
-		if distance[n_now] < dist:
-			continue
-		# 현재 처리 중인 노드와 인접한 노드 확인
-		for n_next in graph[n_now]:
-			# 사용 불가능한 노드라면 다른 경로로 계산
-			if construction[n_next]:
-				continue
-			c = dist + 1  # 비용을 무시하고 거리를 1로 고정
-			# 현재 노드를 거쳐 다른 노드로 가는 거리가 더 짧은 경우
-			if c < distance[n_next]:
-				# 최단 거리 테이블 갱신
-				distance[n_next] = c
-				path[n_next] = n_now  # 최단 경로를 기록
-				# 우선순위 큐에 (거리, 노드 정보) 삽입
-				heapq.heappush(pq, (c, n_next))
+    # Priority queue data structure
+    pq = []
+    # Set the distance from the start node to itself to 0 and push it to the priority queue
+    heapq.heappush(pq, (0, start))
+    distance[start] = 0
+    # Continue until the priority queue is empty
+    while pq:
+        # Pop the node with the shortest distance (distance, node info)
+        dist, n_now = heapq.heappop(pq)
+        # Ignore nodes that have already been processed
+        if distance[n_now] < dist:
+            continue
+        # Check adjacent nodes to the current node
+        for n_next in graph[n_now]:
+            # Skip nodes that are unavailable
+            if construction[n_next]:
+                continue
+            c = dist + 1  # Ignore the cost and set the distance to 1
+            # Update the shortest distance table if a shorter path is found
+            if c < distance[n_next]:
+                distance[n_next] = c
+                path[n_next] = n_now  # Record the shortest path
+                # Push (distance, node info) to the priority queue
+                heapq.heappush(pq, (c, n_next))
 
-# 최소 이동 경로 역추적
+# Reverse lookup of the shortest path
 def get_shortest_path(end):
-	path_nodes = []
-	node = end
-	while node != -1:
-		path_nodes.append(node)
-		node = path[node]
-	path_nodes.reverse()
-	return path_nodes
+    path_nodes = []
+    node = end
+    while node != -1:
+        path_nodes.append(node)
+        node = path[node]
+    path_nodes.reverse()
+    return path_nodes
 
-# 각 날짜에 대한 최단 경로 계산 및 출력
+# Calculate and print the shortest path for each day
 for day in range(1, n + 1):
-	blocked_node = day
-	construction[blocked_node] = True
-	distance = [INF] * (n + 1)
-	path = [-1] * (n + 1)
-	dijkstra(start)
-	if blocked_node in [start, end] or distance[end] == INF:
-		print("-1")
-	else:
-		path_nodes = get_shortest_path(end)
-		print(len(path_nodes))
-	construction[blocked_node] = False
+    blocked_node = day
+    construction[blocked_node] = True
+    distance = [INF] * (n + 1)
+    path = [-1] * (n + 1)
+    dijkstra(start)
+    if blocked_node in [start, end] or distance[end] == INF:
+        print("-1")
+    else:
+        path_nodes = get_shortest_path(end)
+        print(len(path_nodes))
+    construction[blocked_node] = False

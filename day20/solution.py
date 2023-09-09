@@ -1,38 +1,37 @@
-from collections import deque
-
-def bfs(start, off):
-	if start == off:
-		return -1
+def f(i, j, c):
+	arr[i][j] = c
+	stack = [(i, j)]
+	visited = set()
 	
-	visited = [0] * (N + 1)
-	q = deque([start])
-	visited[start] = 1
-	step = 1
+	while stack:
+		y, x = stack.pop()
+		
+		if (y, x) in visited:
+			continue
+		
+		visited.add((y, x))
+		
+		for k in range(4):
+			ny, nx = y + dy[k], x + dx[k]
+			
+			if ny in (-1, N) or nx in (-1, N) or arr[ny][nx] != arr[y][x]:
+				continue
+			
+			stack.append((ny, nx))
 	
-	while q:
-		step += 1
-		for _ in range(len(q)):
-			now = q.popleft()
+	if len(visited) >= K:
+		for y, x in visited:
+			arr[y][x] = "."
 
-			for to in graph[now]:
-				if visited[to] or to == off:
-					continue
-					
-				if to == E:
-					return step
-				
-				visited[to] = 1
-				q.append(to)
-	
-	return -1
-	
-N, M, S, E = map(int, input().split())
-graph = [[] for _ in range(N + 1)]
+dy = [-1, 1, 0, 0]
+dx = [0, 0, -1, 1]
 
-for _ in range(M):
-	u, v = map(int, input().split())
-	graph[u].append(v)
-	graph[v].append(u)
+N, K, Q = map(int, input().split())
+arr = [list(input()) for _ in range(N)]
 
-for i in range(1, N + 1):
-	print(bfs(S, i))
+for _ in range(Q):
+	i, j, c = input().split()
+	f(int(i) - 1, int(j) - 1, c)
+
+for i in arr:
+	print(''.join(i))
